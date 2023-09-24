@@ -18,7 +18,7 @@ export const MainMenu = () => {
                         <li>
                         <a>Auth</a>
                         <ul className="p-2">
-                            <li><a>Login</a></li>
+                            <li><Link href={route('auth.login')}>Login</Link></li>
                             <li><a>Register</a></li>
                         </ul>
                         </li>
@@ -35,7 +35,7 @@ export const MainMenu = () => {
                         <details>
                         <summary>Auth</summary>
                         <ul className="p-2">
-                            <li><a>Login</a></li>
+                            <li><Link href={route('auth.login')}>Login</Link></li>
                             <li><a>Register</a></li>
                         </ul>
                         </details>
