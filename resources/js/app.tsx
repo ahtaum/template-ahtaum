@@ -7,6 +7,7 @@ import { createInertiaApp } from '@inertiajs/inertia-react';
 import { InertiaProgress } from '@inertiajs/progress';
 import { RouteContext } from '@/Hooks/useRoute';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { ProSidebarProvider } from 'react-pro-sidebar';
 
 const appName =
   window.document.getElementsByTagName('title')[0]?.innerText || 'Ahtaum';
@@ -20,10 +21,12 @@ createInertiaApp({
     ),
   setup({ el, App, props }) {
     return render(
-      <RouteContext.Provider value={(window as any).route}>
-        <App {...props} />
-      </RouteContext.Provider>,
-      el,
+      <ProSidebarProvider>
+          <RouteContext.Provider value={(window as any).route}>
+              <App {...props} />
+          </RouteContext.Provider>
+      </ProSidebarProvider>,
+    el,
     );
   },
 });

@@ -32,10 +32,10 @@ export default function Login() {
                 <div className="flex justify-between mt-5">
                     <Link href={route('home')} className="btn btn-error">Back</Link>
 
-                    <button className="btn btn-primary">Login</button>
+                    <button className="btn btn-primary" type="submit">Login</button>
                 </div>
 
-                <span className="text-center mt-5">Or <a href="#" className="underline text-blue-500 font-bold">Register</a> Here</span>
+                <span className="text-center mt-5">Or <Link href={route('auth.register')} className="underline text-blue-500 font-bold">Register</Link> Here</span>
             </div>
         </div>
 
