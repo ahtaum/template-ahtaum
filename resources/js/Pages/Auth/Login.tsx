@@ -7,9 +7,9 @@ export default function Login() {
   return (
     <AuthLayout title="Login">
 
-    <section id="login-page" className="container flex justify-center items-center h-screen">
+    <section id="login-page" className="container flex justify-center items-center h-screen lg:p-0 md:p-0 p-3">
 
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-base-100 shadow-xl lg:w-96 md:w-96 w-full">
             <div className="card-body">
                 <h2 className="card-title mx-auto mb-2">Login</h2>
 
@@ -36,7 +36,6 @@ export default function Login() {
                 </div>
 
                 <span className="text-center mt-5">Or <a href="#" className="underline text-blue-500 font-bold">Register</a> Here</span>
-                
             </div>
         </div>
 
