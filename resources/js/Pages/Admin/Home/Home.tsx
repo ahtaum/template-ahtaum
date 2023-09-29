@@ -4,14 +4,27 @@ import format from 'date-fns/format'
 import route from 'ziggy-js'
 import { FiPlusCircle, FiEdit, FiTrash2 } from 'react-icons/fi'
 import AdminLayout from '@/Layouts/AdminLayout'
+import Pagination from '@/Components/utils/Pagination'
 
 export default function Home({ notes }: any) {
     let { flash }: any = usePage().props
     let [showMessage, setMessage] = useState(false)
 
     let [loading, isLoading] = useState(true)
+
+    // Set Pagination
     const [currentPage, setCurrentPage] = useState(1)
     const perPage = 10
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page)
+    }
+
+    const paginatedData = notes.slice(
+    (currentPage - 1) * perPage,
+        currentPage * perPage
+    )
+    // End Set Pagination
 
     useEffect(() => {
         if (flash.message) {
@@ -34,15 +47,6 @@ export default function Home({ notes }: any) {
 
         return description
     }
-
-    const handlePageChange = (page: number) => {
-        setCurrentPage(page)
-    }
-
-    const paginatedData = notes.slice(
-    (currentPage - 1) * perPage,
-        currentPage * perPage
-    )
 
     return (
     <AdminLayout title="Home Module">
@@ -143,16 +147,12 @@ export default function Home({ notes }: any) {
                     </table>
 
                     {/* Pagination */}
-                    <div className="pagination">
-                        {Array.from({ length: Math.ceil(notes.length / perPage) }, (_, index) => (
-                            <button
-                                key={index + 1}
-                                onClick={() => handlePageChange(index + 1)}
-                                className={`join-item btn ${currentPage === index + 1 ? 'btn-active' : ''}`}
-                            >
-                                {index + 1}
-                            </button>
-                        ))}
+                    <div className="mx-auto text-center my-5">
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={Math.ceil(notes.length / perPage)}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 </div>
             )}

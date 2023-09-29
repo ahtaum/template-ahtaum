@@ -5,14 +5,13 @@ import route from 'ziggy-js'
 import { Inertia } from '@inertiajs/inertia'
 
 export default function Add() {
-    let { errors, flash }: any = usePage().props
+    let { errors }: any = usePage().props
     let [formData, setFormData] = useState({
         title: '',
         description: '',
         publish: 'yes',
     })
 
-    let [notif, setNotif] = useState(false)
     let [loading, setLoading] = useState(false)
 
     let handleChange = (e: any) => {
@@ -31,7 +30,6 @@ export default function Add() {
             Inertia.post(route("admin.home.store"), formData, {
                 forceFormData: true,
                 onProgress: () => {
-                    setNotif(false)
                     setLoading(true)
                 },
                 onFinish: () => {
@@ -40,13 +38,11 @@ export default function Add() {
                 onSuccess: () => {
                     formData.title = ""
                     formData.description = ""
-                    setNotif(true)
                     setLoading(false)
                 }
             })
         } catch (error: any) {
             alert(error.message)
-            setNotif(false)
             setLoading(false)
         }
     }
@@ -59,16 +55,6 @@ export default function Add() {
 
             <div className="card bg-base-100 shadow-xl">
                 <div className="card-body">
-                    {/* Notification Success */}
-                    { notif && (
-                        <div className="alert alert-success shadow-lg">
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                <span>{ flash.message }</span>
-                            </div>
-                        </div>
-                    ) }
-
                     <form onSubmit={handleSubmit}>
                         <div className="form-control mb-4">
                             <label className="label">
