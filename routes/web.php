@@ -23,4 +23,7 @@ Route::controller(AdminController::class)->group(function () {
 // Home Module
 Route::controller(HomeController::class)->group(function () {
     Route::get("admin/home", "index")->name("admin.home");
+    Route::get("admin/home/add", "add")->name("admin.home.add");
+
+    Route::post("admn/home/store", "store")->name("admin.home.store");
 });

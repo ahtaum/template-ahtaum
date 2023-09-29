@@ -11,7 +11,7 @@ const Sidebar = () => {
     return (
         <>
 
-        <Side>
+        <Side className="flex hidden md:block">
             <Menu renderExpandIcon={({ open }) => <span>{open ? '-' : '+'}</span>}>
                 <Link href={route("admin.dashboard")}>
                     <MenuItem icon={<FiFileText />}>Dashboard</MenuItem>
@@ -31,7 +31,7 @@ const Sidebar = () => {
             </Menu>
         </Side>
 
-        <main className="my-4">
+        <main className="my-4 flex hidden md:block">
             <button onClick={() => {
                 collapseSidebar()
                 setCollapsed(!false)
